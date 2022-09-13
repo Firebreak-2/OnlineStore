@@ -1,0 +1,95 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaTestApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:AvaloniaTestApp.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaTestApp.Views.MainWindow"
+        Background="{Binding BgColor}"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaTestApp">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="30,*">
+        <DockPanel>
+            <Menu DockPanel.Dock="Top"
+                  Background="#082c42">
+                <MenuItem Header="_Account">
+                    <MenuItem Header="_Manage">
+                        <MenuItem Header="Log _In"
+                                  Command="{Binding Login}" />
+                        <MenuItem Header="Log _Out"
+                                  Command="{Binding Logout}" />
+                        <MenuItem Header="_Switch"
+                                  Command="{Binding SwitchAccount}" />
+                    </MenuItem>
+                    <MenuItem Header="_Settings"
+                              Command="{Binding GotoSettings}" />
+                    <MenuItem Header="_Order History"
+                              Command="{Binding GotoHistory}" />
+                </MenuItem>
+                <!-- <MenuItem Header="_Menu"> -->
+                <!--     <MenuItem Header="_All" -->
+                <!--               Command="{Binding GotoMenu}" /> -->
+                <!--     <Separator /> -->
+                <!--     <MenuItem Header="_Daily Meal" -->
+                <!--               Command="{Binding GotoMenu}" /> -->
+                <!-- </MenuItem> -->
+            </Menu>
+        </DockPanel>
+        <Grid Row="1"
+              ColumnDefinitions="*,*">
+            <TabControl>
+                <TabItem>
+                    <TabItem.Header>
+                        <Label Foreground="#FFFFFF" Content="x"/>
+                    </TabItem.Header>
+                    <ScrollViewer>
+                        <StackPanel Margin="10,100,10,10"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Orientation="Vertical"
+                                    Spacing="10">
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="10">
+                                <Border Width="100"
+                                        Height="100"
+                                        Background="#AAFFCC"
+                                        CornerRadius="20" />
+                                <Border Width="100"
+                                        Height="100"
+                                        Background="#EE9999"
+                                        CornerRadius="20" />
+                                <Border Width="100"
+                                        Height="100"
+                                        Background="#99E0E0"
+                                        CornerRadius="20" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="10">
+                                <Border Width="100"
+                                        Height="100"
+                                        Background="#EE9999"
+                                        CornerRadius="20" />
+                                <Border Width="100"
+                                        Height="100"
+                                        Background="#EEEE99"
+                                        CornerRadius="20" />
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Label Foreground="#FFFFFF" Content="x"/>
+                    </TabItem.Header>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+
+</Window>

@@ -1,21 +1,31 @@
 ﻿using System;
+using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Platform;
-using Avalonia.Input;
 using Avalonia.Media;
+using AvaloniaTestApp.Models;
 
 namespace AvaloniaTestApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public static ContextMenu MenuBarItemContextMenu => new()
+        public static Controls ShopItems = new ShopItem[]
         {
-            Items = new[]
+            new(0, "Very Long Item Name", ShopItemCategory.Meal),
+            new(0, "Very Long Item Name", ShopItemCategory.Meal),
+            new(0, "Very Long Item Name", ShopItemCategory.Meal),
+            new(0, "Very Long Item Name", ShopItemCategory.Meal),
+            new(0, "Very Long Item Name", ShopItemCategory.Meal),
+            new(0, "Very Long Item Name", ShopItemCategory.Meal),
+        }.Select(x => new Grid
+        {
+            [AvaloniaProperty.Register<Grid, Controls>("Children")] = new Controls(new IControl[]
             {
-                "test 1",
-                "test 2"
-            }
-        };
+                new Button(),
+                new Label { Content = $"{x.Price} : {x.Name}" } 
+            })
+        }).Pipe(x => new Controls(x));
+        
         public static IBrush BgColor => new SolidColorBrush(Color.Parse("#072436"));
         public static IBrush MenuBarColor => new SolidColorBrush(Color.Parse("#082c42"));
 

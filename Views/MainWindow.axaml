@@ -3,7 +3,6 @@
         xmlns:vm="using:AvaloniaTestApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:AvaloniaTestApp.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaTestApp.Views.MainWindow"
         Background="{Binding BgColor}"
@@ -13,6 +12,17 @@
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
+
+    <Window.Styles>
+        <Style Selector="Button.item">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="100" />
+            <Setter Property="CornerRadius" Value="20" />
+        </Style>
+        <Style Selector="TabControl">
+            <Setter Property="Background" Value="{Binding BgColor}" />
+        </Style>
+    </Window.Styles>
 
     <Grid RowDefinitions="30,*">
         <DockPanel>
@@ -32,64 +42,74 @@
                     <MenuItem Header="_Order History"
                               Command="{Binding GotoHistory}" />
                 </MenuItem>
-                <!-- <MenuItem Header="_Menu"> -->
-                <!--     <MenuItem Header="_All" -->
-                <!--               Command="{Binding GotoMenu}" /> -->
-                <!--     <Separator /> -->
-                <!--     <MenuItem Header="_Daily Meal" -->
-                <!--               Command="{Binding GotoMenu}" /> -->
-                <!-- </MenuItem> -->
             </Menu>
         </DockPanel>
-        <Grid Row="1"
-              ColumnDefinitions="*,*">
-            <TabControl>
-                <TabItem>
-                    <TabItem.Header>
-                        <Label Foreground="#FFFFFF" Content="x"/>
-                    </TabItem.Header>
-                    <ScrollViewer>
-                        <StackPanel Margin="10,100,10,10"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    Orientation="Vertical"
-                                    Spacing="10">
-                            <StackPanel Orientation="Horizontal"
-                                        Spacing="10">
-                                <Border Width="100"
-                                        Height="100"
-                                        Background="#AAFFCC"
-                                        CornerRadius="20" />
-                                <Border Width="100"
-                                        Height="100"
-                                        Background="#EE9999"
-                                        CornerRadius="20" />
-                                <Border Width="100"
-                                        Height="100"
-                                        Background="#99E0E0"
-                                        CornerRadius="20" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal"
-                                        Spacing="10">
-                                <Border Width="100"
-                                        Height="100"
-                                        Background="#EE9999"
-                                        CornerRadius="20" />
-                                <Border Width="100"
-                                        Height="100"
-                                        Background="#EEEE99"
-                                        CornerRadius="20" />
-                            </StackPanel>
-                        </StackPanel>
-                    </ScrollViewer>
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <Label Foreground="#FFFFFF" Content="x"/>
-                    </TabItem.Header>
-                </TabItem>
-            </TabControl>
-        </Grid>
+        <TabControl Grid.Row="1">
+            <TabItem>
+                <TabItem.Header>
+                    <Label Foreground="#FFFFFF"
+                           Content="All Items"
+                           FontSize="18" />
+                </TabItem.Header>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10,10,10,10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Orientation="Vertical"
+                                Spacing="10"
+                                Name="PreviewedMenuItems">
+                        <!-- <StackPanel Orientation="Horizontal" -->
+                        <!--             Spacing="10"> -->
+                        <!--     <Button Classes="item" -->
+                        <!--             Background="#AAFFCC" /> -->
+                        <!--     <Grid> -->
+                        <!--         <Button Classes="item" -->
+                        <!--                 Background="#8F8F9F" /> -->
+                        <!--         <Label Content="Something" -->
+                        <!--                Foreground="black" -->
+                        <!--                FontWeight="UltraBold" -->
+                        <!--                VerticalAlignment="Top" -->
+                        <!--                HorizontalAlignment="Center" -->
+                        <!--                MaxWidth="100" -->
+                        <!--                Margin="0,10,0,0" /> -->
+                        <!--     </Grid> -->
+                        <!--     <Button Classes="item" -->
+                        <!--             Background="#EE9999" /> -->
+                        <!--     <Button Classes="item" -->
+                        <!--             Background="#99E0E0" /> -->
+                        <!-- </StackPanel> -->
+                        <!-- <StackPanel Orientation="Horizontal" -->
+                        <!--             Spacing="10"> -->
+                        <!--     <Button Classes="item" -->
+                        <!--             Background="#EE9999" /> -->
+                        <!--     <Button Classes="item" -->
+                        <!--             Background="#EEEE99" /> -->
+                        <!-- </StackPanel> -->
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Label Foreground="#FFFFFF"
+                           Content="Meals"
+                           FontSize="18" />
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Label Foreground="#FFFFFF"
+                           Content="Sides"
+                           FontSize="18" />
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Label Foreground="#FFFFFF"
+                           Content="Desserts"
+                           FontSize="18" />
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
     </Grid>
 
 </Window>
